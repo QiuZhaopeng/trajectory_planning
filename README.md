@@ -7,17 +7,20 @@ This is a micro-project for demonstrating how to solve an optimal collision-free
 
 #### Trajectory
 In this demo, the trajectory is modeled as a 2nd-order polynomial in 2D space:
-
-  $$x(t) = a_2*t^2 + a_1*t + a_0$$
-  $$y(t) = b_2*t^2 + b_1*t + b_0$$
+```math
+  \displaylines{ x(t) = a_2*t^2 + a_1*t + a_0 \\
+  y(t) = b_2*t^2 + b_1*t + b_0 }
+```
 
 **NOTE**: $t$ represents time which is zoomed to [0, 1] interval in this demo
 
 We choose a polynomial model for robot trajectory so that we can guarantee the smoothness of the velocity even acceleration curves:
-  $$x'(t) = 2*a_2*t + a_1$$
-  $$y'(t) = 2*b_2*t + b_1$$
-  $$x''(t) = 2*a_2$$
-  $$y''(t) = 2*b_2$$
+```math
+ \displaylines{ x'(t) = 2*a_2*t + a_1 \\
+  y'(t) = 2*b_2*t + b_1 \\
+  x''(t) = 2*a_2 \\
+  y''(t) = 2*b_2 }
+```
 
 Of course, we could choose higher-order polynomials (or other types of parameterized curves such like B-Splines) for representing the trajectory, especially when there are more complexe constraints so that the solver would have more degrees of freedom to find the optimal solution.
 
