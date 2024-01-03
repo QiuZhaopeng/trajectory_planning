@@ -30,14 +30,17 @@ def make_sequential_ineq_constaints(obs:Obstable, tol:float):
             {'type': 'ineq', 'fun': dist_constraint(0.8, obs, tol)},
             {'type': 'ineq', 'fun': dist_constraint(0.9, obs, tol)})
 
-obs1 = Obstable(3.0, 4.0, 1.8) ## circular obstacle at (4.0, 4.0) with radius 1.8
-# obs2 = Obstable(4.0, 8.0, 1.0) ## circular obstacle at (7.0, 5.0) with radius 1.0
+start_pos = [0.0, 0.0]
+target_pos = [9.0, 10.0]
+
+obs1 = Obstable(3.0, 4.0, 1.8) ## circular obstacle at (3.0, 4.0) with radius 1.8
+# obs2 = Obstable(4.0, 8.0, 1.0) ## circular obstacle at (4.0, 8.0) with radius 1.0
 tol = 0.2
 
-cons = ({'type': 'eq', 'fun': lambda q: q[0] - 0},
-        {'type': 'eq', 'fun': lambda q: q[3] - 0},
-        {'type': 'eq', 'fun': lambda q: q[0] + q[1] + q[2] - 9.0},
-        {'type': 'eq', 'fun': lambda q: q[3] + q[4] + q[5] - 10.0})
+cons = ({'type': 'eq', 'fun': lambda q: q[0] - start_pos[0]},
+        {'type': 'eq', 'fun': lambda q: q[3] - start_pos[1]},
+        {'type': 'eq', 'fun': lambda q: q[0] + q[1] + q[2] - target_pos[0]},
+        {'type': 'eq', 'fun': lambda q: q[3] + q[4] + q[5] - target_pos[1]})
 
 cons_obs1 = make_sequential_ineq_constaints(obs1, tol)
 # cons_obs2 = make_sequential_ineq_constaints(obs2, tol)
